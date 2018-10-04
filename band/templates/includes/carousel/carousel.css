@@ -1,4 +1,20 @@
+.carousel-control {
+  color: #FFFFFF;
+  margin : auto 0;
+}
 
+.carousel-control .fa {
+  display: block;
+  position: absolute;
+  top: 380px;
+  width: 20px;
+}
+.carousel-control .fa-angle-right{
+  right: 50px;
+}
+.carousel-control .fa-angle-left{
+  left: 50px;
+}
 .carousel-inner img {
     -webkit-filter: grayscale(90%);
     filter: grayscale(90%); /* make all photos black and white */
