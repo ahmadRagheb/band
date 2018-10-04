@@ -4,7 +4,9 @@
 {%- include "templates/includes/carousel/carousel.css" -%}
 {% endblock -%}
 
-{%- block carousel %}{%- include "templates/includes/carousel/carousel.html" -%}{% endblock -%}
+{%- block carousel %}
+{%- include "templates/includes/carousel/carousel.html" -%}
+{% endblock -%}
 
 {% block content %}
 <!-- Container (The Band Section) -->
@@ -183,9 +185,13 @@
 <div id="googleMap"></div>
 
 {% block script %}
-<script>{% include "templates/includes/band_home/map.js" %}</script>
+<script>
+{% include "templates/includes/band_home/map.js" %}
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap">
 </script>
-<script>{% include "templates/includes/band_home/band.js" %}</script>
+<script>
+{% include "templates/includes/band_home/band.js" %}
+</script>
 {% endblock %}
 {% endblock %}
