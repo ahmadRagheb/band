@@ -1,9 +1,9 @@
 {% extends "templates/master.html" %}
-{%- block style %}{% endblock -%}
+{%- block style %}
+{%- include "templates/includes/carousel/carousel.css" -%}
+{% endblock -%}
 
-{%- block carousel %}{% endblock -%}
+{%- block carousel %}{%- include "templates/includes/carousel/carousel.html" -%}{% endblock -%}
 
 {% block content %}
 {% endblock %}
-
-{%- block script %}{% endblock -%}
