@@ -178,4 +178,14 @@
     </div>
   </div>
 </div>
+
+<!-- Add Google Maps -->
+<div id="googleMap"></div>
+
+{% block script %}
+<script>{% include "templates/includes/band_home/map.js" %}</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap">
+</script>
+<script>{% include "templates/includes/band_home/band.js" %}</script>
+{% endblock %}
 {% endblock %}
