@@ -1,4 +1,11 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {% for item in carousel_items %}
+        <li data-target="#myCarousel" data-slide-to="{{ item['num'] }}" class="{% if item['active'] %} {{ item['active'] }} {% endif %}"></li>
+      {% endfor %}
+    </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       {% for item in carousel_items %}
