@@ -1,38 +1,23 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      {% for item in carousel_items %}
+        <li data-target="#myCarousel" data-slide-to="{{ item['num'] }}" class="{% if item['active'] %} {{ item['active'] }} {% endif %}"></li>
+      {% endfor %}
     </ol>
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="New York" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>New York</h3>
-          <p>The atmosphere in New York is lorem ipsum.</p>
+      {% for item in carousel_items %}
+        <div class="item {% if item['active'] %} {{ item['active'] }} {% endif %}">
+          <img src="{{ item['image_src'] }}" alt="{{ item['title'] }}" width="1200" height="700">
+          <div class="carousel-caption">
+            <h3>{{ item['title'] }}</h3>
+            <p>{{ item['caption'] }}</p>
+          </div>
         </div>
-      </div>
-
-      <div class="item">
-        <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Chicago" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago - A night we won't forget.</p>
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Los Angeles" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>LA</h3>
-          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <span class="fa fa-angle-left fa-3x" aria-hidden="true"></span>
