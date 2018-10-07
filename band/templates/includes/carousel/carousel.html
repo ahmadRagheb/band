@@ -1,6 +1,7 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
     <!-- Indicators -->
+
     <ol class="carousel-indicators">
       {% for item in carousel_items %}
         <li data-target="#myCarousel" data-slide-to="{{ item['num'] }}" class="{% if item['active'] %} {{ item['active'] }} {% endif %}"></li>
@@ -27,4 +28,5 @@
       <span class="fa fa-angle-right fa-3x" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+
 </div>
