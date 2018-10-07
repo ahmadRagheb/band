@@ -16,19 +16,21 @@
   <p>We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   <br>
   <div class="row">
-    {% for member in band_members %}
-      <div class="col-sm-4">
-        <p class="text-center"><strong>{{ member['name'] }}</strong></p><br>
-        <a href="#demo{{ member['id'] }}" data-toggle="collapse">
-          <img src="{{ member['profile_image'] }}" class="img-circle person" alt="{{ member['name'] }}" width="255" height="255">
-        </a>
-        <div id="demo{{ member['id'] }}" class="collapse">
-          <p>{{ member['role'] }}</p>
-          <p>{{ member['hobby'] }}</p>
-          <p>Member since {{ member['join_year'] }}</p>
+    {% if band_members %}
+      {% for member in band_members %}
+        <div class="col-sm-4">
+          <p class="text-center"><strong>{{ member['name'] }}</strong></p><br>
+          <a href="#demo{{ member['id'] }}" data-toggle="collapse">
+            <img src="{{ member['profile_image'] }}" class="img-circle person" alt="{{ member['name'] }}" width="255" height="255">
+          </a>
+          <div id="demo{{ member['id'] }}" class="collapse">
+            <p>{{ member['role'] }}</p>
+            <p>{{ member['hobby'] }}</p>
+            <p>Member since {{ member['join_year'] }}</p>
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 
@@ -44,69 +46,56 @@
     </ul>
 
     <div class="row text-center">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="/assets/band/images/paris.jpg" alt="Paris" width="400" height="300">
-          <p><strong>Paris</strong></p>
-          <p>Friday 27 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="/assets/band/images/newyork.jpg" alt="New York" width="400" height="300">
-          <p><strong>New York</strong></p>
-          <p>Saturday 28 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="/assets/band/images/sanfran.jpg" alt="San Francisco" width="400" height="300">
-          <p><strong>San Francisco</strong></p>
-          <p>Sunday 29 November 2015</p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Buy Tickets</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="fa fa-lock"></span> Tickets</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form">
-            <div class="form-group">
-              <label for="psw"><span class="fa fa-shopping-cart"></span> Tickets, $23 per person</label>
-              <input type="number" class="form-control" id="psw" placeholder="How many?">
+      {% if not_sold_tours%}
+        {% for tours in not_sold_tours %}
+          <div class="col-sm-4">
+            <div class="thumbnail">
+              <img src="{{ tours['city_image'] }}" alt="{{ tours['city_name'] }}" width="400" height="300">
+              <p><strong>{{ tours['city_name'] }}</strong></p>
+              <p>{{ tours['date'] }}</p>
+              <button class="btn" data-toggle="modal" data-target="#myModal{{ tours['id'] }}">Buy Tickets</button>
             </div>
-            <div class="form-group">
-              <label for="usrname"><span class="fa fa-user"></span> Send To</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal{{ tours['id'] }}" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="fa fa-lock"></span> Tickets</h4>
+                </div>
+                <div class="modal-body">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="psw"><span class="fa fa-shopping-cart"></span> Tickets, ${{ tours['tickets_price'] }} per person</label>
+                      <input type="number" class="form-control" id="psw" placeholder="How many?">
+                    </div>
+                    <div class="form-group">
+                      <label for="usrname"><span class="fa fa-user"></span> Send To</label>
+                      <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                    </div>
+                      <button type="submit" class="btn btn-block">Pay
+                        <span class="fa fa-check"></span>
+                      </button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+                    <span class="fa fa-times"></span> Cancel
+                  </button>
+                  <p>Need <a href="#">help?</a></p>
+                </div>
+              </div>
             </div>
-              <button type="submit" class="btn btn-block">Pay
-                <span class="fa fa-check"></span>
-              </button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-            <span class="fa fa-times"></span> Cancel
-          </button>
-          <p>Need <a href="#">help?</a></p>
-        </div>
-      </div>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </div>
-
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
   <h3 class="text-center">Contact</h3>

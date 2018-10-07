@@ -2,21 +2,25 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      {% for item in carousel_items %}
-        <li data-target="#myCarousel" data-slide-to="{{ item['num'] }}" class="{% if item['active'] %} {{ item['active'] }} {% endif %}"></li>
-      {% endfor %}
+      {% if carousel_items %}
+        {% for item in carousel_items %}
+          <li data-target="#myCarousel" data-slide-to="{{ item['num'] }}" class="{% if item['active'] %} {{ item['active'] }} {% endif %}"></li>
+        {% endfor %}
+      {% endif %}
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      {% for item in carousel_items %}
-        <div class="item {% if item['active'] %} {{ item['active'] }} {% endif %}">
-          <img src="{{ item['image_src'] }}" alt="{{ item['title'] }}" width="1200" height="700">
-          <div class="carousel-caption">
-            <h3>{{ item['title'] }}</h3>
-            <p>{{ item['caption'] }}</p>
+      {% if carousel_items %}
+        {% for item in carousel_items %}
+          <div class="item {% if item['active'] %} {{ item['active'] }} {% endif %}">
+            <img src="{{ item['image_src'] }}" alt="{{ item['title'] }}" width="1200" height="700">
+            <div class="carousel-caption">
+              <h3>{{ item['title'] }}</h3>
+              <p>{{ item['caption'] }}</p>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% endif %}
     </div>
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
