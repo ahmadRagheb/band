@@ -3,14 +3,20 @@ import frappe
 from frappe.model.document import Document
 
 def get_context(context):
-	
-    carasoul =  frappe.get_list("Carousel", fields=["title", "image", "caption"])
+
+	#Check Empty Image
+    carasoul =  frappe.get_list("Carousel", fields=["title", "image", "caption","active"],filters={"image": ("!=", "")},order_by='active DESC')
     carousel_items=[]
-    active = 'active'
+    active = ''
+    #to solve problem when more than one slide is active
+    activeRegisted=0
     for counter, r in enumerate(carasoul):
-        if counter <> 0:
-            active = ''
+        if activeRegisted==0:
+            if r.active == 1:
+                active = 'active'
+                activeRegisted=1
         array = {'num': counter, 'title': r.title, 'image_src': r.image, 'caption': r.caption, 'active': active}
+        active=''
         carousel_items.append(array)
 
 
