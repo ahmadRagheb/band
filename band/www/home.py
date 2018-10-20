@@ -27,11 +27,11 @@ def get_context(context):
     # ]
     
 
+
     band_members = [
 	{'id': 1 , 'name':'Chris Sanford', 'profile_image' : '/assets/band/images/bandmember.jpg', 'role':'Guitarist and Lead Vocalist', 'hobby' :'Loves long walks on the beach', 'join_year':'1988'},
 	{'id': 2 , 'name':'Jovani Tate', 'profile_image' : '/assets/band/images/bandmember.jpg', 'role':'Drummer', 'hobby' :'Loves drummin', 'join_year':'1988'},
 	{'id': 3 , 'name':'April Mata', 'profile_image' : '/assets/band/images/bandmember.jpg', 'role':'Bass player', 'hobby' :'Loves math', 'join_year':'1988'}
     ]
 
-	
     return {'carousel_items': carousel_items, 'band_members' : band_members}
